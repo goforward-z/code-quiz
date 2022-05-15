@@ -152,11 +152,11 @@ function gameOver(){
 }
  
 // enter initial and store highscore in local storage
-function storedHighScores(event){
+function storeHighScores(event){
     event.preventDefult();
 
     //stop function is initial is blank
-    if (initialInput.value ===""){
+    if (initialInput.value === ""){
         alert("Please enter your initials!");
         return;
     }
@@ -188,7 +188,7 @@ function storedHighScores(event){
 
     //stringify array in order to store in local
     var scoresArrayString = JSON.stringify(scoresArray);
-    Window.localStorage.setItem("high scores",scoresArrayString);
+    window.localStorage.setItem("high scores",scoresArrayString);
 
     //show current highscores
     showHighScores();
@@ -230,9 +230,8 @@ choiceB.addEventListener("click",chooseB);
 choiceC.addEventListener("click",chooseC);
 choiceD.addEventListener("click",chooseD);
 
-submitInitialBtn.addEventListener("click",function(event) {
+submitInitialBtn.addEventListener("click", function(event){ 
     storeHighScores(event);
-    
 });
 
 viewHighScore.addEventListener("click", function(event){
