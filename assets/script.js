@@ -136,3 +136,39 @@ function gameOver(){
     //show final score
     finalScore.textContent =correctAns;
 }
+ 
+// enter initial and store highscore in local storage
+function storedHighScores(event){
+    event.preventDefult();
+
+    //stop function is initial is blank
+    if (initialInput.value ===""){
+        alert("Please enter your initials!");
+        return;
+    }
+
+    //store scores into local storage
+    var savedHighScores = localStorage.getItem("high scores");
+    var scoresArray;
+
+    if (savedHighScores === null){
+        scoresArray =[];
+    }else{
+        scoresArray = JSON.parse(savedHighScores)
+    }
+
+    var userScore ={
+        initials: initialInput.value,
+        score:finalScore.textContent
+    };
+
+    console.log(userScore);
+    scoresArray.push(userScore);
+
+    //stringify array in order to store in local
+    var scoresArrayString = JSON.stringify(scoresArray);
+    Window.localStorage.setItem("high scores",scoresArrayString);
+
+    //show current highscores
+    showHighScores();
+}
