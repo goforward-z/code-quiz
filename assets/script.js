@@ -99,3 +99,40 @@ function nextQuestion(){
     choiceC.textContent = questions[questionIndex].choiceC[2];
     choiceD.textContent = questions[questionIndex].choiceD[3];
 }
+
+//after question is answered,show if correct  or wrong
+function checkAnswer(answer){
+    var lineBreak =document.getElementById("lineBrek");
+
+    if (questions[questionIndex].answer === questions[questionIndex].choices[answer]){
+        //correct answer,add 1 score to final score
+        correctAns++;
+        answerCheck.textContent ="Correct!";
+    }else{
+        //wrong answer,deduct 10 second from timer
+        totalTime -= 10;
+        timeLeft.textContent = totalTime;
+        answerCheck.textContent ="Wrong! The correct answer is:" + questions[questionIndex].answer;
+
+    } 
+    questionIndex++;
+    //repeat with the rest questions
+    if(questionIndex< questions.length){
+        nextQuestion();
+    }else{
+        //if no more question,run game over function
+        gameOver();
+    }
+}
+
+function chosseA(){checkAnswer(0);}
+function chooseB(){checkAnswer(1);}
+function chooseC(){checkAnswer(2);}
+function choiceD(){checkAnswer(3);}
+
+//when all question are answered or timer reaches 0 game over
+function gameOver(){
+
+    //show final score
+    finalScore.textContent =correctAns;
+}
