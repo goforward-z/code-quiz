@@ -128,7 +128,7 @@ function checkAnswer(answer){
 function chosseA(){checkAnswer(0);}
 function chooseB(){checkAnswer(1);}
 function chooseC(){checkAnswer(2);}
-function choiceD(){checkAnswer(3);}
+function chooseD(){checkAnswer(3);}
 
 //when all question are answered or timer reaches 0 game over
 function gameOver(){
@@ -193,3 +193,26 @@ function showHighScores(){
         listOfHighScores.appendChild(eachNewHighScore);
     }
 }
+
+//add event listeners
+
+startQuizBtn.addEventListener("click",newQuiz);
+choiceA.addEventListener("click",chosseA);
+choiceB.addEventListener("click",chooseB);
+choiceC.addEventListener("click",chooseC);
+choiceD.addEventListener("click",chooseD);
+
+submitInitialBtn.addEventListener("click",function(event) {
+    storeHighScores(event);
+    
+});
+
+viewHighScore.addEventListener("click", function(event){
+    showHighScores(event);
+});
+
+clearHighScoreBtn.addEventListener("click",function(){
+    window.localStorage.removeItem("high scores");
+    listOfHighScores.innerHTML ="High Scores Cleared!";
+    listOfHighScores.setAttribute("style","font-family:'Archivo', sans-serif; font-style: italic;")
+});
