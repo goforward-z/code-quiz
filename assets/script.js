@@ -61,3 +61,41 @@ var correctAns = 0;
 var questionNum = 0;
 var scoreResult;
 var questionIndex = 0;
+
+
+//functions
+
+//when I clicked start button ,timer starts
+var totalTime = 151;
+function newQuiz(){
+    questionIndex =0;
+    totalTime =150;
+    timeLeft.textContent = totalTime;
+    initialInput.textContent ="";
+
+    var startTimer = setInterval(function(){
+        totalTime--;
+        timeLeft.textContent = totalTime;
+        if(totalTime <=0){
+            clearInterval(startTimer);
+            if(questionIndex < questions.length - 1){
+                gameOver();
+            }
+        }
+    },1000); 
+    showQuiz();
+};
+
+//then presented with question and choices
+function showQuiz(){
+    nextQuestion();
+
+}
+
+function nextQuestion(){
+    questionTitle.textContent = questions[questionIndex].question;
+    choiceA.textContent = questions[questionIndex].choices[0];
+    choiceB.textContent = questions[questionIndex].choices[1];
+    choiceC.textContent = questions[questionIndex].choiceC[2];
+    choiceD.textContent = questions[questionIndex].choiceD[3];
+}
